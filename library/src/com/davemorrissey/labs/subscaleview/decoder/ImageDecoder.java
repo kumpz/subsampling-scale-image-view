@@ -25,4 +25,14 @@ public interface ImageDecoder {
      */
     Bitmap decode(Context context, Uri uri) throws Exception;
 
+    /**
+     * Decode an image. When possible, initial setup work once in this method. This method
+     * must return the dimensions of the image.
+     * @param context Application context. A reference may be held, but must be cleared on recycle.
+     * @param bytes byte[] of the image.
+     * @return Dimensions of the image.
+     * @throws Exception if initialisation fails.
+     */
+    Bitmap decode(Context context, byte[] bytes) throws Exception;
+
 }

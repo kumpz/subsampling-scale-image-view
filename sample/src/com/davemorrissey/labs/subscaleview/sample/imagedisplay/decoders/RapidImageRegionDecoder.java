@@ -30,6 +30,13 @@ public class RapidImageRegionDecoder implements ImageRegionDecoder {
     }
 
     @Override
+    public Point init(Context context, byte[] bytes) throws Exception {
+        decoder = BitmapDecoder.from(bytes);
+        decoder.useBuiltInDecoder(true);
+        return new Point(decoder.sourceWidth(), decoder.sourceHeight());
+    }
+
+    @Override
     public synchronized Bitmap decodeRegion(Rect sRect, int sampleSize) {
         try {
             return decoder.reset().region(sRect).scale(sRect.width()/sampleSize, sRect.height()/sampleSize).decode();

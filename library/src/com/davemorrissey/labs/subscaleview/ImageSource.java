@@ -23,6 +23,7 @@ public final class ImageSource {
     private final Uri uri;
     private final Bitmap bitmap;
     private final Integer resource;
+    private final byte[] byteArr;
     private boolean tile;
     private int sWidth;
     private int sHeight;
@@ -33,6 +34,7 @@ public final class ImageSource {
         this.bitmap = bitmap;
         this.uri = null;
         this.resource = null;
+        this.byteArr = null;
         this.tile = false;
         this.sWidth = bitmap.getWidth();
         this.sHeight = bitmap.getHeight();
@@ -54,6 +56,7 @@ public final class ImageSource {
         }
         this.bitmap = null;
         this.uri = uri;
+        this.byteArr = null;
         this.resource = null;
         this.tile = true;
     }
@@ -61,9 +64,19 @@ public final class ImageSource {
     private ImageSource(int resource) {
         this.bitmap = null;
         this.uri = null;
+        this.byteArr = null;
         this.resource = resource;
         this.tile = true;
     }
+
+    private ImageSource(byte[] byteArr) {
+        this.bitmap = null;
+        this.uri = null;
+        this.byteArr = byteArr;
+        this.resource = null;
+        this.tile = true;
+    }
+
 
     /**
      * Create an instance from a resource. The correct resource for the device screen resolution will be used.
@@ -122,6 +135,17 @@ public final class ImageSource {
             throw new NullPointerException("Bitmap must not be null");
         }
         return new ImageSource(bitmap, false);
+    }
+
+    /**
+     * Create an instance from a byte-array.
+     * @param  byteArr byte[] of image.
+     */
+    public static ImageSource byteArray(byte[] byteArr) {
+        if (byteArr == null) {
+            throw new NullPointerException("Bitmap must not be null");
+        }
+        return new ImageSource(byteArr);
     }
 
     /**
@@ -205,6 +229,10 @@ public final class ImageSource {
 
     protected final Bitmap getBitmap() {
         return bitmap;
+    }
+
+    protected final byte[] getByteArray() {
+        return byteArr;
     }
 
     protected final Integer getResource() {

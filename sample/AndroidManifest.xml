@@ -17,6 +17,7 @@
         </intent-filter>
     </activity>
     <activity android:name=".basicfeatures.BasicFeaturesActivity"/>
+    <activity android:name=".basicfeatures.BasicFeaturesActivityWithByteArray"/>
     <activity android:name=".imagedisplay.ImageDisplayActivity"/>
     <activity android:name=".eventhandling.EventHandlingActivity"/>
     <activity android:name=".eventhandlingadvanced.AdvancedEventHandlingActivity"/>

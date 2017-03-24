@@ -23,4 +23,9 @@ public class RapidImageDecoder implements ImageDecoder {
         return BitmapDecoder.from(context, uri).useBuiltInDecoder(true).config(Bitmap.Config.RGB_565).decode();
     }
 
+    @Override
+    public Bitmap decode(Context context, byte[] bytes) throws Exception {
+        return BitmapDecoder.from(bytes).useBuiltInDecoder(true).config(Bitmap.Config.RGB_565).decode();
+    }
+
 }

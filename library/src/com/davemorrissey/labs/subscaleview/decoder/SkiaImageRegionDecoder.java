@@ -76,6 +76,13 @@ public class SkiaImageRegionDecoder implements ImageRegionDecoder {
     }
 
     @Override
+    public Point init(Context context, byte[] bytes) throws Exception {
+        decoder = BitmapRegionDecoder.newInstance(bytes, 0, bytes.length, false);
+
+        return new Point(decoder.getWidth(), decoder.getHeight());
+    }
+
+    @Override
     public Bitmap decodeRegion(Rect sRect, int sampleSize) {
         synchronized (decoderLock) {
             BitmapFactory.Options options = new BitmapFactory.Options();

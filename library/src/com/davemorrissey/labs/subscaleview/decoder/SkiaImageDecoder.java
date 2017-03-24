@@ -76,4 +76,12 @@ public class SkiaImageDecoder implements ImageDecoder {
         }
         return bitmap;
     }
+
+    @Override
+    public Bitmap decode(Context context, byte[] bytes) throws Exception {
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inPreferredConfig = Bitmap.Config.RGB_565;
+
+        return BitmapFactory.decodeByteArray(bytes, 0, bytes.length, options);
+    }
 }

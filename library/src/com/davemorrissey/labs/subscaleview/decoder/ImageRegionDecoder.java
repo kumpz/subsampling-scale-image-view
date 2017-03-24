@@ -26,6 +26,16 @@ public interface ImageRegionDecoder {
     Point init(Context context, Uri uri) throws Exception;
 
     /**
+     * Initialise the decoder. When possible, initial setup work once in this method. This method
+     * must return the dimensions of the image.
+     * @param context Application context. A reference may be held, but must be cleared on recycle.
+     * @param bytes byte[] of the image
+     * @return Dimensions of the image.
+     * @throws Exception if initialisation fails.
+     */
+    Point init(Context context, byte[] bytes) throws Exception;
+
+    /**
      * Decode a region of the image with the given sample size. This method is called off the UI thread so it can safely
      * load the image on the current thread. It is called from an {@link android.os.AsyncTask} running in a single
      * threaded executor, and while a synchronization lock is held on this object, so will never be called concurrently

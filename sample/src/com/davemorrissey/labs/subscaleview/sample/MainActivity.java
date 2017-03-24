@@ -25,6 +25,7 @@ import android.view.View.OnClickListener;
 import com.davemorrissey.labs.subscaleview.sample.R.id;
 import com.davemorrissey.labs.subscaleview.sample.animation.AnimationActivity;
 import com.davemorrissey.labs.subscaleview.sample.basicfeatures.BasicFeaturesActivity;
+import com.davemorrissey.labs.subscaleview.sample.basicfeatures.BasicFeaturesActivityWithByteArray;
 import com.davemorrissey.labs.subscaleview.sample.configuration.ConfigurationActivity;
 import com.davemorrissey.labs.subscaleview.sample.eventhandling.EventHandlingActivity;
 import com.davemorrissey.labs.subscaleview.sample.eventhandlingadvanced.AdvancedEventHandlingActivity;
@@ -40,6 +41,7 @@ public class MainActivity extends Activity implements OnClickListener {
         getActionBar().setTitle("Subsampling Scale Image View");
         setContentView(R.layout.main);
         findViewById(id.basicFeatures).setOnClickListener(this);
+        findViewById(id.basicFeaturesWithByteArray).setOnClickListener(this);
         findViewById(id.imageDisplay).setOnClickListener(this);
         findViewById(id.eventHandling).setOnClickListener(this);
         findViewById(id.advancedEventHandling).setOnClickListener(this);
@@ -56,6 +58,9 @@ public class MainActivity extends Activity implements OnClickListener {
     public void onClick(View view) {
         if (view.getId() == id.basicFeatures) {
             Intent intent = new Intent(this, BasicFeaturesActivity.class);
+            startActivity(intent);
+        } else if (view.getId() == id.basicFeaturesWithByteArray) {
+            Intent intent = new Intent(this, BasicFeaturesActivityWithByteArray.class);
             startActivity(intent);
         } else if (view.getId() == id.imageDisplay) {
             Intent intent = new Intent(this, ImageDisplayActivity.class);
