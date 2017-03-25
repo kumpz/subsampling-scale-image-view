@@ -439,8 +439,8 @@ public class SubsamplingScaleImageView extends View {
         } else if (imageSource.getBitmap() != null) {
             onImageLoaded(imageSource.getBitmap(), ORIENTATION_0, imageSource.isCached());
         } else if (imageSource.getByteArray() != null) {
-            byteArray = imageSource.getByteArray();
             sRegion = imageSource.getSRegion();
+            byteArray = imageSource.getByteArray();
             if (imageSource.getTile() || sRegion != null) {
                 // Load the bitmap using tile decoding.
                 TilesInitTask task = new TilesInitTask(this, getContext(), regionDecoderFactory, byteArray);
@@ -499,6 +499,7 @@ public class SubsamplingScaleImageView extends View {
         sRect = null;
         if (newImage) {
             uri = null;
+            byteArray = null;
             if (decoder != null) {
                 synchronized (decoderLock) {
                     decoder.recycle();
@@ -2687,7 +2688,7 @@ public class SubsamplingScaleImageView extends View {
      * @return If an image is currently set.
      */
     public boolean hasImage() {
-        return uri != null || bitmap != null;
+        return uri != null || bitmap != null || byteArray != null;
     }
 
     /**
